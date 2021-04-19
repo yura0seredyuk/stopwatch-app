@@ -40,7 +40,7 @@ function App() {
   }
 
   const resetTimer = () => {
-    if (!watchOn && time !== 0) {
+    if (!watchOn && time > 2) {
       setWatchOn(true);
     }
 
