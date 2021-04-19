@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import './App.css';
 import { Box, Button, Paper } from '@material-ui/core';
 import { interval, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import image from './images/istockphoto-978715528-612x612.jpg';
+import { styles } from './styles';
 
 function App() {
   const [time, setTime] = useState(0);
@@ -106,25 +105,5 @@ function App() {
     </Paper>
   );
 }
-
-const styles = {
-  paperContainer: {
-    backgroundImage: `url(${image})`,
-    backgroundSize: "cover",
-  },
-  boxContainer: {
-    display: "flex",
-    height: "100vh",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  contentContainer: {
-    display: "flex",
-    justifyContent: "center",
-  },
-  timerFont: {
-    fontSize: "2.4rem",
-  },
-};
 
 export default App;
