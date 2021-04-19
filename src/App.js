@@ -49,26 +49,21 @@ function App() {
 
   return (
     <Paper style={styles.paperContainer}>
-      <Box
-        display="flex"
-        height="100vh"
-        alignItems="center"
-        justifyContent="center"
-      >
+      <Box style={styles.boxContainer}>
         <Box>
-          <Box display="flex" justifyContent="center" m={2}>
-            <Box fontSize="2.4rem">
+          <Box style={styles.contentContainer} m={2}>
+            <Box style={styles.timerFont}>
               {('0' + Math.floor((time / (1000 * 60 * 60)) % 24)).slice(-2)}&nbsp;:&nbsp;
             </Box>
-            <Box fontSize="2.4rem">
+            <Box style={styles.timerFont}>
               {('0' + Math.floor(time / 6000)).slice(-2)}&nbsp;:&nbsp;
             </Box>
-            <Box fontSize="2.4rem">
+            <Box style={styles.timerFont}>
               {('0' + Math.floor((time / 100) % 60)).slice(-2)}
             </Box>
           </Box>
 
-          <Box display="flex" justifyContent="center">
+          <Box style={styles.contentContainer}>
             <Box m={2}>
               {watchOn ? (
                 <Button
@@ -115,8 +110,21 @@ function App() {
 const styles = {
   paperContainer: {
     backgroundImage: `url(${image})`,
-    backgroundSize: 'cover',
-  }
+    backgroundSize: "cover",
+  },
+  boxContainer: {
+    display: "flex",
+    height: "100vh",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  contentContainer: {
+    display: "flex",
+    justifyContent: "center",
+  },
+  timerFont: {
+    fontSize: "2.4rem",
+  },
 };
 
 export default App;
