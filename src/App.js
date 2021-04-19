@@ -9,20 +9,20 @@ function App() {
   const [time, setTime] = useState(0);
   const [watchOn, setWatchOn] = useState(false);
 
-  const numbers = interval(10);
-
   useEffect(() => {
     const unsubscribe = new Subject();
 
-    numbers
+    interval(10)
       .pipe(takeUntil(unsubscribe))
-      .subscribe((value) => {
+      .subscribe(() => {
         if (watchOn) {
-          setTime(value);
+          setTime(value => value + 1);
         }
       });
+
     return () => {
       unsubscribe.next();
+      unsubscribe.complete();
     };
   }, [watchOn]);
 
@@ -31,8 +31,8 @@ function App() {
   }
 
   const stopTimer = () => {
+    setWatchOn(prevState => !prevState);
     setTime(0);
-    setWatchOn(false);
   }
 
   const pauseTimer = () => {
@@ -40,8 +40,11 @@ function App() {
   }
 
   const resetTimer = () => {
+    if (!watchOn && time !== 0) {
+      setWatchOn(true);
+    }
+
     setTime(0);
-    setWatchOn(false);
   }
 
   return (
@@ -61,31 +64,29 @@ function App() {
               {('0' + Math.floor(time / 6000)).slice(-2)}&nbsp;:&nbsp;
             </Box>
             <Box fontSize="2.4rem">
-              {('0' + Math.floor((time / 100) % 60)).slice(-2)}&nbsp;:&nbsp;
-            </Box>
-            <Box fontSize="2.4rem">
-              {('0' + Math.floor(time % 100)).slice(-2)}
+              {('0' + Math.floor((time / 100) % 60)).slice(-2)}
             </Box>
           </Box>
 
           <Box display="flex" justifyContent="center">
             <Box m={2}>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={startTimer}
-              >
-                Start
-              </Button>
-            </Box>
-            <Box m={2}>
-              <Button
-                variant="contained"
-                color="secondary"
-                onClick={stopTimer}
-              >
-                Stop
-              </Button>
+              {watchOn ? (
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={stopTimer}
+                >
+                  Stop
+                </Button>
+              ) : (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={startTimer}
+                >
+                  Start
+                </Button>
+              )}
             </Box>
             <Box m={2}>
               <Button
