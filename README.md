@@ -1,7 +1,10 @@
 # StopwatchApp
+- Click Start button to start the timer.
+- Click Stop button to stop the timer and reset timer to 0.
+- **Double click** Wait button to pause the timer. Press Start to run again.
+- Click Reset button to reset timer to 0 and start timer again. 
 
-Write here about your project in two-three sentences.
-- [DEMO LINK](https://yura0seredyuk.github.io/stopwatch-app/)
+# [DEMO LINK](https://yura0seredyuk.github.io/stopwatch-app/)
 
 ## Description
 
